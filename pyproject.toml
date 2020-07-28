@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "klopov"
-version = "0.0.1"
+version = "0.1.0"
 description = "Financial API"
 authors = ["Alexander Lavrov <internal@egnod.dev>"]
 license = "MIT"
