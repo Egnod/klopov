@@ -14,7 +14,7 @@ async def open_db_connect():
         logger.error(f"Unable to connect DB, error {e.__class__.__name__}")
 
     if not is_failed:
-        logger.info(f"Successfully open db connect")
+        logger.info("Successfully open db connect")
 
     else:
         exit(-1)
