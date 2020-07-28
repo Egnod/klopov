@@ -1,0 +1,11 @@
+FROM python:3.8.3-buster
+
+ENV PYTHONUNBUFFERED=1 DOCKER=1 DEBIAN_FRONTEND=noninteractive
+
+COPY ./pyproject.toml /klopov/
+COPY ./poetry.lock /klopov/
+
+WORKDIR /klopov/
+
+RUN pip install poetry uvicorn
+RUN poetry config virtualenvs.create false --local && poetry install --no-root

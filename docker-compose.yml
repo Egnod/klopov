@@ -1,0 +1,30 @@
+# docker-compose config for local development
+version: '3'
+services:
+  server:
+    container_name: klopov-server-local
+    command: uvicorn klopov.worker:app --host 0.0.0.0 --port 4100 --workers 3 --limit-concurrency 10 --reload
+    restart: always
+    build:
+      context: ./
+      dockerfile: deploy/dockerfiles/Dockerfile.local
+    volumes:
+    - ./:/klopov
+    depends_on:
+      - db
+    expose:
+      - 4100
+    ports:
+      - 4100:4100
+    env_file:
+      - .env
+
+  db:
+    container_name: klopov-mongodb-local
+    image: mongo:4.2-bionic
+    command: mongod --port 27017
+    restart: always
+    ports:
+      - 27017:27017
+    env_file:
+      - .env
